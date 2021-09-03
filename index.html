@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>OTF/WOFF/WOFF2 Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+  </script>
+
+  <header>
+    <h1><a href="#">OTF/WOFF/WOFF2 Converter</a></h1>
+    <div>
+      Convert fonts from/to ttf, otf, woff and woff2 without server interaction
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="input-select-zone">
+      <div>
+        <input id="input-file" type="file" style="display:none" multiple>
+        <button id="select-file-button">Select a font</button>
+      </div>
+    </div>
+
+    <div id="selected-font-info"></div>
+
+    <div id="format-select-container">
+      <input type="radio" class="input-radio" id="output-format-otf" name="output-format" value="otf">
+      <label for="output-format-otf">TTF/OTF</label>
+      <input type="radio" class="input-radio" id="output-format-woff" name="output-format" value="woff">
+      <label for="output-format-woff">WOFF</label>
+      <input type="radio" class="input-radio" id="output-format-woff2" name="output-format" value="woff2" checked>
+      <label for="output-format-woff2">WOFF2</label>
+    </div>
+
+    <div id="convert-button-container">
+      <button id="convert-button">Convert</button>
+    </div>
+
+    <div id="spinner" class="spinner-off">
+      <div style="display: flex; align-items: center">
+        <span>Converting</span>
+        <!-- https://codepen.io/aurer/pen/jEGbA -->
+        <svg version="1.1" id="spinner-icon" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
+          style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <rect x="0" y="2" width="4" height="18" fill="#333">
+            <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0s" dur="2s"
+              repeatCount="indefinite" />
+          </rect>
+          <rect x="7" y="2" width="4" height="18" fill="#333">
+            <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0.6s" dur="2s"
+              repeatCount="indefinite" />
+          </rect>
+          <rect x="14" y="2" width="4" height="18" fill="#333">
+            <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="1.2s" dur="2s"
+              repeatCount="indefinite" />
+          </rect>
+        </svg>
+      </div>
+
+      <div>It may take several minutes when you convert a large font.</div>
+    </div>
+    <div id="convert-result-container"></div>
+    <div id="error-message-container" class="error-message-off"></div>
+  </main>
+
+  <footer class="container">
+    <span id="version">__VERSION__</span> -
+    <a href="https://github.com/bashi/kombu/issues">File an issue</a>
+  </footer>
+</body>
+
+</html>
