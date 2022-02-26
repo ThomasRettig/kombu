@@ -12,3 +12,4 @@ tmp/
 public/*.html
 public/*.js
 public/*.wasm
+yarn.lock
